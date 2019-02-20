@@ -35,13 +35,13 @@ class GameOfLife {
 		let data = fs.readFileSync(file, 'utf8');
 		let tokens = data.split(' ');
 		
-		this.grid = new Array(parseInt(tokens[0]));
-		for (let i = 0; i < this.grid.length; i++) {
-			this.grid[i] = new Array(parseInt(tokens[1]));
+		this.rows = parseInt(tokens.shift());
+		this.cols = parseInt(tokens.shift());
+		this.grid = new Array(this.rows);
+		for (let i = 0; i < this.rows; i++) {
+			this.grid[i] = new Array(this.cols);
 			this.grid[i].fill(0);
 		}
-		this.rows = this.grid.length;
-		this.cols = this.grid[0].length;
 		
 		// TO DO: fill this.grid with values in the tokens array
 
