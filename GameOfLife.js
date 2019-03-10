@@ -44,9 +44,17 @@ class GameOfLife {
 			this.grid[i] = new Array(this.cols);
 			this.grid[i].fill(0);
 		}
-		
-		// TO DO: fill this.grid with values in the tokens array
 
+		let index = 0;
+		// TO DO: fill this.grid with values in the tokens array
+		while (index < tokens.length) {
+			for (let j = 0; j < this.rows; j++) {
+				for (let k = 0; k < this.cols; k++) {
+					this.grid[j][k] = tokens[index];
+				}
+				index++;
+			}
+		}
 		
 	}
 	
@@ -55,7 +63,11 @@ class GameOfLife {
 		let data = this.rows + ' ' + this.cols;
 
 		// TO DO: append the values in this.grid to data
-		
+		for(let i = 0; i < this.rows; i++) {
+			for(let j = 0; j < this.cols; j++) {
+				
+			}
+		}
 		
 		data += '\n';
 		fs.writeFileSync(file,data);
@@ -71,7 +83,33 @@ class GameOfLife {
 		}
 		
 		// TO DO: using this.grid, set values in temp grid to next generation
-		
+		let numNeighbors = 0;
+		for (let i = 0; i < this.rows; i++) {
+			for (let j = 0; j < this.cols; j++) {
+				numNeighbors = this.getNeighbors(i, j);
+				if (this.grid[i][j] == 1) {
+					if (numNeighbors < 2) {
+						//dying
+						temp[i][j] = 0;
+					}
+					else if (numNeighbors == 2 || numNeighbors == 3) {
+						//lives
+						temp[i][j] = 1;
+					}
+					else if (numNeighbors > 3) {
+						//dying
+						temp[i][j] = 0;
+					}
+					//printf("%d \n", numNeighbors);
+				}
+				else {
+					if (numNeighbors == 3) {
+						//live
+						temp[i][j] = 1;
+					}
+				}
+			}
+		}
 		
 		// set this.grid to temp grid
 		this.grid = temp;
@@ -82,8 +120,61 @@ class GameOfLife {
 		let neighbors = 0;
 
 		// TO DO: determine number of neighbors of cell at this.grid[i][j]
-		
-		
+		//up/left
+		if (i > 0 && j > 0 && i < this.rows && j < this.cols) { //making sure i and j are in bounds
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//up
+		if (i > 0 && j >= 0 && i <= this.rows && j <= this.cols) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//up/right
+		if (i > 0 && j >= 0 && i < this.rows && j < (this.cols - 1)) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//left
+		if (i >= 0 && j > 0 && i < this.rows && j < this.cols) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//right
+		if (i >= 0 && j >= 0 && i < this.rows && j < (this.cols - 1)) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//down/left
+		if (i >= 0 && j > 0 && i < (this.rows - 1) && j < this.cols) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//down
+		if (i >= 0 && j >= 0 && i < (this.rows - 1) && j < this.cols) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}
+
+		//down/right
+		if (i >= 0 && j >= 0 && i < (this.rows - 1) && j < (this.cols - 1)) {
+			if (this.grid[i][j] === 1) {
+				neighbors++;
+			}
+		}	
 		return neighbors;
 	}
 	
@@ -160,3 +251,5 @@ function main() {
 
 // Invoke the driver
 main();
+//defining GameOfLife
+module.exports = GameOfLife;
