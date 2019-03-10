@@ -1,0 +1,26 @@
+{
+  "name": "GameOfLife",
+  "version": "1.0.0",
+  "description": "\"# GameOfLife-js\"",
+  "main": "GameOfLife.js",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "jest": "^24.3.1"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lapumb/GameOfLife-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lapumb/GameOfLife-js/issues"
+  },
+  "homepage": "https://github.com/lapumb/GameOfLife-js#readme"
+}

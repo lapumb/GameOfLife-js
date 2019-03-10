@@ -3,6 +3,8 @@
 /**
  *  Game of Life
  *  Author(s): Nandigam
+ * 			   Blake Lapum
+ * 			   Cole Sellers
  */
 
 /*
