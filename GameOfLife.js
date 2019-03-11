@@ -250,6 +250,6 @@ function main() {
 }
 
 // Invoke the driver
-main();
+//main();
 //defining GameOfLife
 module.exports = GameOfLife;
