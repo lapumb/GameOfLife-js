@@ -65,7 +65,7 @@ class GameOfLife {
 		for(let i = 0; i < this.rows; i++) {
 			for(let j = 0; j < this.cols; j++) {
 				//TODO complete this
-				data += parseInt(this.grid[i][j]); 
+				data += ' ' + parseInt(this.grid[i][j]); 
 			}
 		}
 		
@@ -100,7 +100,7 @@ class GameOfLife {
 						//dying
 						temp[i][j] = 0;
 					}
-					console.log(numNeighbors); 
+					//console.log(numNeighbors); 
 				}
 				else {
 					if (numNeighbors === 3) {
