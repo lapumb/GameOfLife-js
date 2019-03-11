@@ -50,12 +50,11 @@ class GameOfLife {
 		while (index < tokens.length) {
 			for (let j = 0; j < this.rows; j++) {
 				for (let k = 0; k < this.cols; k++) {
-					this.grid[j][k] = tokens[index];
+					this.grid[j][k] = parseInt(tokens[index]);
+					index++;
 				}
-				index++;
 			}
 		}
-		
 	}
 	
 	// Saves the current grid values to the file specified.
@@ -65,7 +64,8 @@ class GameOfLife {
 		// TO DO: append the values in this.grid to data
 		for(let i = 0; i < this.rows; i++) {
 			for(let j = 0; j < this.cols; j++) {
-				
+				//TODO complete this
+				data += parseInt(this.grid[i][j]); 
 			}
 		}
 		
@@ -86,13 +86,13 @@ class GameOfLife {
 		let numNeighbors = 0;
 		for (let i = 0; i < this.rows; i++) {
 			for (let j = 0; j < this.cols; j++) {
-				numNeighbors = this.getNeighbors(i, j);
-				if (this.grid[i][j] == 1) {
+				numNeighbors = parseInt(this.getNeighbors(i, j));
+				if (this.grid[i][j] === 1) {
 					if (numNeighbors < 2) {
 						//dying
 						temp[i][j] = 0;
 					}
-					else if (numNeighbors == 2 || numNeighbors == 3) {
+					else if (numNeighbors === 2 || numNeighbors === 3) {
 						//lives
 						temp[i][j] = 1;
 					}
@@ -100,10 +100,10 @@ class GameOfLife {
 						//dying
 						temp[i][j] = 0;
 					}
-					//printf("%d \n", numNeighbors);
+					console.log(numNeighbors); 
 				}
 				else {
-					if (numNeighbors == 3) {
+					if (numNeighbors === 3) {
 						//live
 						temp[i][j] = 1;
 					}
@@ -122,56 +122,56 @@ class GameOfLife {
 		// TO DO: determine number of neighbors of cell at this.grid[i][j]
 		//up/left
 		if (i > 0 && j > 0 && i < this.rows && j < this.cols) { //making sure i and j are in bounds
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i-1][j-1] === 1) {
 				neighbors++;
 			}
 		}
 
 		//up
 		if (i > 0 && j >= 0 && i <= this.rows && j <= this.cols) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i-1][j] === 1) {
 				neighbors++;
 			}
 		}
 
 		//up/right
 		if (i > 0 && j >= 0 && i < this.rows && j < (this.cols - 1)) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i-1][j+1] === 1) {
 				neighbors++;
 			}
 		}
 
 		//left
 		if (i >= 0 && j > 0 && i < this.rows && j < this.cols) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i][j-1] === 1) {
 				neighbors++;
 			}
 		}
 
 		//right
 		if (i >= 0 && j >= 0 && i < this.rows && j < (this.cols - 1)) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i][j+1] === 1) {
 				neighbors++;
 			}
 		}
 
 		//down/left
 		if (i >= 0 && j > 0 && i < (this.rows - 1) && j < this.cols) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i+1][j-1] === 1) {
 				neighbors++;
 			}
 		}
 
 		//down
 		if (i >= 0 && j >= 0 && i < (this.rows - 1) && j < this.cols) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i+1][j] === 1) {
 				neighbors++;
 			}
 		}
 
 		//down/right
 		if (i >= 0 && j >= 0 && i < (this.rows - 1) && j < (this.cols - 1)) {
-			if (this.grid[i][j] === 1) {
+			if (this.grid[i+1][j+1] === 1) {
 				neighbors++;
 			}
 		}	
